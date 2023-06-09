@@ -23,9 +23,10 @@ namespace _0_Framework.Infrastructure
             return _context.Set<T>().ToList();
         }
 
+        //? Works like top method 
         public IEnumerable<T> GetAllPlatforms()
         {
-            throw new NotImplementedException();
+            return _context.Set<T>().ToList();
         }
 
         public void Create(T entity)
