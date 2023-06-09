@@ -15,4 +15,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PlatformManagement.Domain\PlatformManagement.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

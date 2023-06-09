@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PlatformManagement.Domain;
 
 namespace PlatformManagement.Infrastructure.EFCore.Mappings
 {
-    public class PlatformMapping : IEntityTypeConfiguration<>
+    public class PlatformMapping : IEntityTypeConfiguration<Platform>
     {
-        public void Configure(EntityTypeBuilder<> builder)
-        {
-            builder.ToTable("");
 
-            builder.HasKey(x => x.);
+        public void Configure(EntityTypeBuilder<Platform> builder)
+        {
+            builder.ToTable("Platforms");
+
+            builder.HasKey(x => x.Id);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PlatformManagement.Domain;
 using PlatformManagement.Infrastructure.EFCore.Mappings;
 
 namespace PlatformManagement.Infrastructure.EFCore.Context
