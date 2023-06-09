@@ -12,6 +12,10 @@ namespace PlatformManagement.Infrastructure.EFCore.Mappings
             builder.ToTable("Platforms");
 
             builder.HasKey(x => x.Id);
+
+            builder.Property(x => x.Publisher).IsRequired();
+            builder.Property(x => x.Name).IsRequired();
+            builder.Property(x => x.Cost).IsRequired();
         }
     }
 }
