@@ -1,4 +1,5 @@
 using PlatformManagement.Infrastructure.Configuration;
+using PlatformManagement.Infrastructure.EFCore.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+
+PrepDB.PrepPopulation(app);
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
