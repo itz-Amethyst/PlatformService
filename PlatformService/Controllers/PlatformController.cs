@@ -37,11 +37,23 @@ namespace PlatformService.Controllers
 
             if (platformData != null)
             {
-                return Ok(_mapper.Map<IEnumerable<PlatformViewModel>>(platformData));
+                return Ok(_mapper.Map<PlatformViewModel>(platformData));
             }
 
             return NotFound();
 
+        }
+
+        [HttpPost]
+        public ActionResult<PlatformViewModel> CreatePlatform(CreatePlatform command)
+        {
+            //var platformModel = _mapper.Map<Platform>(command);
+
+            _platformRepository.CreatePlatform(command);
+
+            var platformData = _mapper.Map<Platform>(command);
+
+            return CreatedAtRoute(nameof(GetPlatformById), new { Id = platformData.Id }, platformData);
         }
     }
 }
