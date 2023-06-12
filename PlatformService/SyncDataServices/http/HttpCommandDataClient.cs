@@ -21,8 +21,8 @@ namespace PlatformService.SyncDataServices.http
             "application/json");
 
             //? Goes to appsettings.json and pick CommandService url
-
-            var response = await _httpClient.PostAsync($"{_configuration["CommandService"]}api/c/Platforms", httpContent);
+            //Note: remember to add .value after getsection to gets that value 
+            var response = await _httpClient.PostAsync($"{_configuration.GetSection("CommandService").Value}/api/c/Platforms", httpContent);
 
             //! Short of if and else
             //Console.WriteLine(response.IsSuccessStatusCode

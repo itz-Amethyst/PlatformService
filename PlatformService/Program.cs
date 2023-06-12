@@ -19,6 +19,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+//? To Know the Command Endpoint because of development and production stage
+
+Console.WriteLine($"--> CommandService Endpoint {builder.Configuration.GetSection("CommandService").Value} <--");
+
 var app = builder.Build();
 
 
