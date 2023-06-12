@@ -1,5 +1,6 @@
 using PlatformManagement.Infrastructure.Configuration;
 using PlatformManagement.Infrastructure.EFCore.Context;
+using PlatformService.SyncDataServices.http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 var connectionString = builder.Configuration.GetConnectionString("");
 
 PlatformManagementBootstrapper.Configure(builder.Services);
+builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
