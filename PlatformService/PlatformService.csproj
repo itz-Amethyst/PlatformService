@@ -19,4 +19,8 @@
     <ProjectReference Include="..\PlatformManagement.Infrastructure.Configuration\PlatformManagement.Infrastructure.Configuration.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="K8S\" />
+  </ItemGroup>
+
 </Project>
