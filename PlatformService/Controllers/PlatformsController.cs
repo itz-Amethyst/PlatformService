@@ -2,21 +2,24 @@
 using Microsoft.AspNetCore.Mvc;
 using PlatformManagement.Application.Contracts.Platform;
 using PlatformManagement.Domain;
+using PlatformService.SyncDataServices.http;
 
 namespace PlatformService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PlatformController : ControllerBase
+    public class PlatformsController : ControllerBase
     {
         //private readonly ILogger _logger;
         private readonly IPlatformRepository _platformRepository;
         private readonly IMapper _mapper;
+        private readonly ICommandDataClient _commandDataClient;
 
-        public PlatformController(IPlatformRepository platformRepository, IMapper mapper)
+        public PlatformsController(IPlatformRepository platformRepository, IMapper mapper, ICommandDataClient commandDataClient)
         {
             _platformRepository = platformRepository;
             _mapper = mapper;
+            _commandDataClient = commandDataClient;
         }
 
 
@@ -45,13 +48,23 @@ namespace PlatformService.Controllers
         }
 
         [HttpPost]
-        public ActionResult<PlatformViewModel> CreatePlatform(CreatePlatform command)
+        public async Task<ActionResult<PlatformViewModel>> CreatePlatform(CreatePlatform command)
         {
-            //var platformModel = _mapper.Map<Platform>(command);
 
             _platformRepository.CreatePlatform(command);
 
             var platformData = _mapper.Map<Platform>(command);
+
+            var platformViewModel = _mapper.Map<PlatformViewModel>(platformData);
+
+            try
+            {
+               await _commandDataClient.SendPlatformToCommand(platformViewModel);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"--> Could not send synchronously {e.Message}");
+            }
 
             return CreatedAtRoute(nameof(GetPlatformById), new { Id = platformData.Id }, platformData);
         }
