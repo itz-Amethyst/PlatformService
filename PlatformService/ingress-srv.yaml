@@ -1,0 +1,21 @@
+﻿apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: 
+    name: ingress-srv
+    annotation: 
+        kubernetes.io/ingress.class: ngix
+        ngix.ingress.kubernetes.io/use-regex: 'true'
+spec:
+    rules: 
+        - host: pranser.com
+          http: 
+            paths: 
+                - path: /api/platforms
+                  pathType: Prefix
+                  backend:
+                    service: 
+                        name: platforms-clusterip-service
+                        port: 
+                            number: 80
+                
+  
