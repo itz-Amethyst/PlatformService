@@ -7,6 +7,8 @@ metadata:
         ngix.ingress.kubernetes.io/use-regex: 'true'
 spec:
     rules: 
+          # Dont forget to add path in this route c:/windows/system32/drivers/etc/hosts 
+          # 127.0.0.1 pranser.com (nameof host)
         - host: pranser.com
           http: 
             paths: 
@@ -17,5 +19,12 @@ spec:
                         name: platforms-clusterip-service
                         port: 
                             number: 80
-                
+                - path: /api/c/platforms
+                  pathType: Prefix
+                  backend:
+                    service:
+                        name: commands-clusterip-srv
+                        port:
+                            number:80
+        
   
