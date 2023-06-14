@@ -1,5 +1,6 @@
 ﻿using CommandManagement.Domain.Commands;
 using CommandManagement.Domain.Platforms;
+using CommandManagement.Infrastructure.EFCore.Mappings;
 using Microsoft.EntityFrameworkCore;
 
 namespace CommandManagement.Infrastructure.EFCore.Context
@@ -13,6 +14,13 @@ namespace CommandManagement.Infrastructure.EFCore.Context
         public CommandContext(DbContextOptions<CommandContext> options) : base(options)
         {
             
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            var assembly = typeof(CommandMapping).Assembly;
+            modelBuilder.ApplyConfigurationsFromAssembly(assembly);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
