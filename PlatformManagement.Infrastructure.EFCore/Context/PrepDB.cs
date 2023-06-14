@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PlatformManagement.Domain;
 
@@ -6,16 +7,31 @@ namespace PlatformManagement.Infrastructure.EFCore.Context
 {
     public static class PrepDB
     {
-        public static void PrepPopulation(IApplicationBuilder app)
+        public static void PrepPopulation(IApplicationBuilder app, bool isProduction)
         {
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
-                SeedData(serviceScope.ServiceProvider.GetService<PlatformContext>());
+                SeedData(serviceScope.ServiceProvider.GetService<PlatformContext>() , isProduction);
             }
         }
 
-        private static void SeedData(PlatformContext context)
+        private static void SeedData(PlatformContext context , bool isProduction)
         {
+            if (isProduction)
+            {
+                Console.WriteLine("--> Attending to Apply Migrations <--");
+                try
+                {
+                    context.Database.Migrate();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"--> Could not run migrations: {e.Message} <--");
+                    throw;
+                }
+            }
+
+
             if (!context.Platforms.Any())
             {
                 Console.WriteLine("--> Seeding Data <--");
