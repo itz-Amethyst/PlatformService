@@ -1,16 +1,18 @@
+using Microsoft.Extensions.Hosting.Internal;
 using PlatformManagement.Infrastructure.Configuration;
 using PlatformManagement.Infrastructure.EFCore.Context;
 using PlatformService.SyncDataServices.http;
 
 var builder = WebApplication.CreateBuilder(args);
+IHostEnvironment env = new HostingEnvironment();
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 
-var connectionString = builder.Configuration.GetConnectionString("");
+var connectionString = builder.Configuration.GetConnectionString("PlatformsConn");
 
-PlatformManagementBootstrapper.Configure(builder.Services);
+PlatformManagementBootstrapper.Configure(builder.Services, env , connectionString);
 builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 
 
