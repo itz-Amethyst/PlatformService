@@ -28,7 +28,7 @@ Console.WriteLine($"--> CommandService Endpoint {builder.Configuration.GetSectio
 var app = builder.Build();
 
 
-PrepDB.PrepPopulation(app);
+PrepDB.PrepPopulation(app , env.IsProduction());
 
 
 // Configure the HTTP request pipeline.
