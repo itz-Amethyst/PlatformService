@@ -20,13 +20,12 @@ namespace CommandManagement.Domain.Commands
 
         public Platform Platform { get; private set; }
 
-        public Command(int id, string howTo, string commandLine, int platformId, Platform platform)
+        public Command(int id, string howTo, string commandLine, int platformId)
         {
             Id = id;
             HowTo = howTo;
             CommandLine = commandLine;
             PlatformId = platformId;
-            Platform = platform;
         }
     }
 }

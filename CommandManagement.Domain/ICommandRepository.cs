@@ -1,4 +1,5 @@
-﻿using CommandManagement.Domain.Commands;
+﻿using CommandManagement.Application.Contracts.Command;
+using CommandManagement.Domain.Commands;
 
 namespace CommandManagement.Domain
 {
@@ -10,6 +11,6 @@ namespace CommandManagement.Domain
 
         Command GetCommand(int platformId , int commandId);
 
-        void CreateCommand(int id);
+        void CreateCommand(int platformId , CreateCommand command);
     }
 }
