@@ -2,6 +2,7 @@
 using CommandManagement.Application.Contracts.Command;
 using CommandManagement.Domain.Commands;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.Design;
 
 namespace CommandsService.Controllers
 {
@@ -36,7 +37,7 @@ namespace CommandsService.Controllers
         [HttpGet("{commandId}", Name = "GetCommandForPlatform")]
         public ActionResult<CommandViewModel> GetCommandForPlatform(int platformId , int commandId)
         {
-            Console.WriteLine($"--> Hit GetCommandsForPlatform: {platformId} / {commandId} <--");
+            Console.WriteLine($"--> Hit GetCommandForPlatform: {platformId} / {commandId} <--");
 
             if (!_commandRepository.Exists(x => x.PlatformId == platformId))
             {
@@ -51,6 +52,21 @@ namespace CommandsService.Controllers
             }
 
             return Ok(_mapper.Map<CommandViewModel>(command));
+        }
+
+        [HttpPost]
+        public ActionResult<CommandViewModel> CreateCommandForPlatform(int platformId , CreateCommand commandDto)
+        {
+            Console.WriteLine($"--> Hit CreateCommandForPlatform: {platformId} <--");
+
+            if (!_commandRepository.Exists(x => x.PlatformId == platformId))
+            {
+                return NotFound();
+            }
+
+            //var command = _mapper.Map<Command>(commandDto);
+
+            _commandRepository.CreateCommand(platformId , commandDto);
         }
     }
 }
