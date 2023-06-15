@@ -14,4 +14,8 @@
     <ProjectReference Include="..\CommandManagement.Domain\CommandManagement.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repository\" />
+  </ItemGroup>
+
 </Project>
