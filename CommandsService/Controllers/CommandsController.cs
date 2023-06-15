@@ -32,5 +32,25 @@ namespace CommandsService.Controllers
 
             return Ok(_mapper.Map<IEnumerable<CommandViewModel>>(commands));
         }
+
+        [HttpGet("{commandId}", Name = "GetCommandForPlatform")]
+        public ActionResult<CommandViewModel> GetCommandForPlatform(int platformId , int commandId)
+        {
+            Console.WriteLine($"--> Hit GetCommandsForPlatform: {platformId} / {commandId} <--");
+
+            if (!_commandRepository.Exists(x => x.PlatformId == platformId))
+            {
+                return NotFound();
+            }
+
+            var command = _commandRepository.GetCommand(platformId, commandId);
+
+            if (command == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_mapper.Map<CommandViewModel>(command));
+        }
     }
 }
