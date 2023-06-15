@@ -1,5 +1,7 @@
 ﻿using CommandManagement.Domain.Commands;
+using CommandManagement.Infrastructure.EFCore.Context;
 using CommandManagement.Infrastructure.EFCore.Repository;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CommandManagement.Infrastructure.Configuration
@@ -27,6 +29,8 @@ namespace CommandManagement.Infrastructure.Configuration
             //    services.AddDbContext<PlatformContext>(x => x.UseInMemoryDatabase("InMem"));
 
             //}
+
+            services.AddDbContext<CommandContext>(x => x.UseInMemoryDatabase("InMem"));
 
         }
     }
