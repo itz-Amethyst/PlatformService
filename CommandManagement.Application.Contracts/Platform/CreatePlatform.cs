@@ -9,6 +9,5 @@ namespace CommandManagement.Application.Contracts.Platform
 
         public string Name { get; set; }
 
-        public ICollection<Command> Commands { get; set; } 
     }
 }
