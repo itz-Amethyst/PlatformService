@@ -5,7 +5,7 @@ using PlatformManagement.Infrastructure.EFCore.Context;
 
 namespace PlatformManagement.Infrastructure.EFCore.Repositories
 {
-    public class PlatformRepository : Repository<int, Platform>, IPlatformRepository
+    public class PlatformRepository : RepositoryBase<int, Platform>, IPlatformRepository
     {
 
         private readonly PlatformContext _context;

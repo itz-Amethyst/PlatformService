@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\0_Framework\0_Framework.csproj" />
     <ProjectReference Include="..\CommandManagement.Domain\CommandManagement.Domain.csproj" />
   </ItemGroup>
 

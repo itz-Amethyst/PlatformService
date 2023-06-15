@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\0_Framework\0_Framework.csproj" />
     <ProjectReference Include="..\CommandManagement.Application.Contracts\CommandManagement.Application.Contracts.csproj" />
   </ItemGroup>
 

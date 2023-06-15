@@ -1,14 +1,15 @@
-﻿using CommandManagement.Application.Contracts.Command;
+﻿using _0_Framework.Infrastructure;
+using CommandManagement.Application.Contracts.Command;
 using CommandManagement.Domain.Commands;
 using CommandManagement.Infrastructure.EFCore.Context;
 
 namespace CommandManagement.Infrastructure.EFCore.Repository
 {
-    public class CommandRepository : ICommandRepository
+    public class CommandRepository : RepositoryBase<int, Command>, ICommandRepository
     {
         private readonly CommandContext _commandContext;
         // It works like the same method GetById but for this section i used this
-        public CommandRepository(CommandContext commandContext)
+        public CommandRepository(CommandContext commandContext) : base(commandContext)
         {
             _commandContext = commandContext;
         }
