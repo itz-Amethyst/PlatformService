@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using CommandManagement.Application.Contracts.Platform;
+using CommandManagement.Domain.Commands;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CommandsService.Controllers
 {
@@ -7,15 +10,29 @@ namespace CommandsService.Controllers
     [ApiController]
     public class PlatformsController : ControllerBase
     {
-        public PlatformsController()
+        private readonly ICommandRepository _commandRepository;
+        private readonly IMapper _mapper;
+        public PlatformsController(IMapper mapper, ICommandRepository commandRepository)
         {
-            
+            _mapper = mapper;
+            _commandRepository = commandRepository;
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<PlatformViewModel>> GetPlatforms()
+        {
+            Console.WriteLine("--> Getting Platforms From CommandsService <--");
+
+            var platformsItem = _commandRepository.GetAllPlatforms();
+
+            return Ok(_mapper.Map <IEnumerable<PlatformViewModel>>(platformsItem));
+
         }
 
         [HttpPost]
         public ActionResult TestInboundConnection()
         {
-            Console.WriteLine("--> Inbound Post # Command  Service <--");
+            Console.WriteLine("--> Inbound Post # Commands  Service <--");
 
             return Ok("Inbound test of from Platforms Controller");
         }
