@@ -1,7 +1,6 @@
 ﻿using CommandManagement.Application.Contracts.Command;
-using CommandManagement.Domain.Commands;
 
-namespace CommandManagement.Domain
+namespace CommandManagement.Domain.Commands
 {
     public interface ICommandRepository
     {
@@ -9,8 +8,8 @@ namespace CommandManagement.Domain
         // Commands
         IEnumerable<Command> GetCommandsForPlatform(int platformId);
 
-        Command GetCommand(int platformId , int commandId);
+        Command GetCommand(int platformId, int commandId);
 
-        void CreateCommand(int platformId , CreateCommand command);
+        void CreateCommand(int platformId, CreateCommand command);
     }
 }

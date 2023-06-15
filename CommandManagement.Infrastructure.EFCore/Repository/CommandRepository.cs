@@ -1,5 +1,4 @@
 ﻿using CommandManagement.Application.Contracts.Command;
-using CommandManagement.Domain;
 using CommandManagement.Domain.Commands;
 using CommandManagement.Infrastructure.EFCore.Context;
 
