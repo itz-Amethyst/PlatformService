@@ -2,6 +2,7 @@ using Microsoft.Extensions.Hosting.Internal;
 using PlatformManagement.Infrastructure.Configuration;
 using PlatformManagement.Infrastructure.EFCore.Context;
 using PlatformService.SyncDataServices.http;
+using RabbitMQLManagement.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 IHostEnvironment env = new HostingEnvironment();
@@ -13,6 +14,7 @@ builder.Services.AddControllers();
 var connectionString = builder.Configuration.GetConnectionString("PlatformsConn");
 
 PlatformManagementBootstrapper.Configure(builder.Services, env , connectionString);
+RabbitMQlBootstrapper.Configure(builder.Services);
 builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 
 
