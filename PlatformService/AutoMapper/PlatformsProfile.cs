@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PlatformManagement.Application.Contracts.Platform;
 using PlatformManagement.Domain;
+using RabbitMQLManagement.Application.Contracts;
 
 namespace PlatformService.AutoMapper
 {
@@ -10,6 +11,7 @@ namespace PlatformService.AutoMapper
         {
             CreateMap<Platform, PlatformViewModel>();
             CreateMap<CreatePlatform, Platform>();
+            CreateMap<PlatformViewModel, PlatformPublishedViewModel>();
         }
     }
 }
