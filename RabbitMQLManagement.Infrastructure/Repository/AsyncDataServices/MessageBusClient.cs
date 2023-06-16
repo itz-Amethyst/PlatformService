@@ -28,6 +28,10 @@ namespace RabbitMQLManagement.Infrastructure.Services.Repository.AsyncDataServic
                 _channel = _connection.CreateModel();
 
                 _channel.ExchangeDeclare(exchange: "trigger" , type: ExchangeType.Fanout);
+
+                _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
+
+                Console.WriteLine($"--> Connected to Message");
             }
             catch (Exception e)
             {
@@ -39,6 +43,11 @@ namespace RabbitMQLManagement.Infrastructure.Services.Repository.AsyncDataServic
         public void PublishNewPlatform(PlatformPublishedViewModel platformPublishedViewModel)
         {
             throw new NotImplementedException();
+        }
+
+        private void RabbitMQ_ConnectionShutdown(object sender , ShutdownEventArgs e)
+        {
+            Console.WriteLine($"--> RabbitMQ Connection Shutdown");
         }
     }
 }
