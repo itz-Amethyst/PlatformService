@@ -18,7 +18,7 @@ namespace CommandManagement.Infrastructure.EFCore.Repository
         {
             return _commandContext.Commands
                 .Where(x => x.PlatformId == platformId)
-                .OrderBy(c => c.Platform.Name);
+                .OrderByDescending(x=>x.Id);
         }
 
         public Command GetCommand(int platformId, int commandId)
@@ -32,6 +32,8 @@ namespace CommandManagement.Infrastructure.EFCore.Repository
         public void CreateCommand(int platformId, CreateCommand command)
         {
             if(command == null) throw new ArgumentNullException(nameof(command));
+
+            command.PlatformId = platformId;
 
             var commandData = new Command(command.Id, command.HowTo, command.CommandLine, command.PlatformId);
 
