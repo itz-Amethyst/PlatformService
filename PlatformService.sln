@@ -37,9 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandManagement.Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CSM.Application", "CSM.Application", "{10386184-A666-4D8E-927E-0FCD55BD1565}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandManagement.Application.Contracts", "CommandManagement.Application.Contracts\CommandManagement.Application.Contracts.csproj", "{59F7340F-C54C-4338-96EF-2D2D4C195B16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandManagement.Application.Contracts", "CommandManagement.Application.Contracts\CommandManagement.Application.Contracts.csproj", "{59F7340F-C54C-4338-96EF-2D2D4C195B16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandManagement.Infrastructure.Configuration", "CommandManagement.Infrastructure.Configuration\CommandManagement.Infrastructure.Configuration.csproj", "{6765DE94-E7FB-4603-8937-FD68CD3C9624}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandManagement.Infrastructure.Configuration", "CommandManagement.Infrastructure.Configuration\CommandManagement.Infrastructure.Configuration.csproj", "{6765DE94-E7FB-4603-8937-FD68CD3C9624}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
