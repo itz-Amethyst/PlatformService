@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CommandManagement.Application.Contracts.Command;
 using CommandManagement.Application.Contracts.Platform;
 using CommandManagement.Domain.Commands;
 using Microsoft.AspNetCore.Mvc;
@@ -19,13 +20,13 @@ namespace CommandsService.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<PlatformViewModel>> GetPlatforms()
+        public ActionResult<IEnumerable<CommandViewModel>> GetPlatforms()
         {
             Console.WriteLine("--> Getting Platforms From CommandsService <--");
 
             var platformsItem = _commandRepository.GetAllPlatforms();
 
-            return Ok(_mapper.Map <IEnumerable<PlatformViewModel>>(platformsItem));
+            return Ok(_mapper.Map <IEnumerable<CommandViewModel>>(platformsItem));
 
         }
 
