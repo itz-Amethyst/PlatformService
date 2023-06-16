@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Text;
+using System.Text.Json;
+using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
 using RabbitMQLManagement.Application.Contracts;
 using RabbitMQLManagement.Domain;
@@ -42,7 +44,40 @@ namespace RabbitMQLManagement.Infrastructure.Services.Repository.AsyncDataServic
 
         public void PublishNewPlatform(PlatformPublishedViewModel platformPublishedViewModel)
         {
-            throw new NotImplementedException();
+            var message = JsonSerializer.Serialize(platformPublishedViewModel);
+
+            if (_connection.IsOpen)
+            {
+                Console.WriteLine($"--> RabbitMQ Connection is Open and sending message ...");
+                //TODO Send the message
+                SendMessage(message);
+            }
+            else
+            {
+                Console.WriteLine($"--> RabbitMQ Connection is Closed");
+            }
+        }
+
+        private void SendMessage(string message)
+        {
+            var body = Encoding.UTF8.GetBytes(message);
+
+            _channel.BasicPublish(exchange:"trigger" , routingKey: "" , basicProperties: null , body: body);
+
+            Console.WriteLine($"--> We have sent {message}");
+
+        }
+
+        public void Dispose()
+        {
+            Console.WriteLine($"--> Message Bus Disposed");
+
+            if (_channel.IsOpen)
+            {
+                _channel.Close();
+                _connection.Close();
+            }
+
         }
 
         private void RabbitMQ_ConnectionShutdown(object sender , ShutdownEventArgs e)
