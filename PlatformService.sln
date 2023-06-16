@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQLManagement.Infrast
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQLManagement.Domain", "RabbitMQLManagement.Domain\RabbitMQLManagement.Domain.csproj", "{4BC1A5AA-24EA-48B7-A0DD-EBE13900BE33}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQLManagement.Infrastructure.Configuration", "RabbitMQLManagement.Infrastructure.Configuration\RabbitMQLManagement.Infrastructure.Configuration.csproj", "{FAC14168-0ECF-4C19-816A-A79762CFA61E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{4BC1A5AA-24EA-48B7-A0DD-EBE13900BE33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BC1A5AA-24EA-48B7-A0DD-EBE13900BE33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BC1A5AA-24EA-48B7-A0DD-EBE13900BE33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC14168-0ECF-4C19-816A-A79762CFA61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC14168-0ECF-4C19-816A-A79762CFA61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC14168-0ECF-4C19-816A-A79762CFA61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC14168-0ECF-4C19-816A-A79762CFA61E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,6 +148,7 @@ Global
 		{D271B567-CEBB-4342-9DBD-A53BA8E77016} = {F21EA7D5-BD25-407E-BCC2-3700F4CE43FE}
 		{20E7B5CF-9D7F-44B1-B514-624A8EB2710E} = {370D47A4-7F18-477F-ADBB-4ADB01A97AED}
 		{4BC1A5AA-24EA-48B7-A0DD-EBE13900BE33} = {D271B567-CEBB-4342-9DBD-A53BA8E77016}
+		{FAC14168-0ECF-4C19-816A-A79762CFA61E} = {370D47A4-7F18-477F-ADBB-4ADB01A97AED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {51F47BC7-2BDD-4411-A7FD-7F1005F81E2A}
