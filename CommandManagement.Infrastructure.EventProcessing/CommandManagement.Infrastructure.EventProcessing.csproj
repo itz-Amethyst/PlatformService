@@ -11,6 +11,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\CommandManagement.Domain\CommandManagement.Domain.csproj" />
+	  <ProjectReference Include="..\CommandManagement.Infrastructure.EFCore\CommandManagement.Infrastructure.EFCore.csproj" />
 	  <ProjectReference Include="..\RabbitMQLManagement.Application.Contracts\RabbitMQLManagement.Application.Contracts.csproj" />
 	</ItemGroup>
 

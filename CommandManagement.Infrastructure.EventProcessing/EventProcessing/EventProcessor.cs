@@ -2,6 +2,7 @@
 using _0_Framework.Application.EventProcessing;
 using AutoMapper;
 using CommandManagement.Domain.Commands;
+using CommandManagement.Domain.Platforms;
 using Microsoft.Extensions.DependencyInjection;
 using RabbitMQLManagement.Application.Contracts;
 
@@ -54,7 +55,30 @@ namespace CommandManagement.Infrastructure.EventProcessing.EventProcessing
         {
             using (var scope = _scopeFactory.CreateScope())
             {
-                var repo = scope.ServiceProvider.GetRequiredService<ICommandRepository>();
+                var repo = scope.ServiceProvider.GetRequiredService<IPlatformRepository>();
+
+                var platformPublishedViewModel =
+                    JsonSerializer.Deserialize<PlatformPublishedViewModel>(platformPublishedMessage);
+
+                try
+                {
+
+                    Platform plat = _mapper.Map<Platform>(platformPublishedViewModel);
+                    //? Check later
+                    if (!repo.Exists(x => x.ExternalId == plat.ExternalId))
+                    {
+                        repo.Create(plat);
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("--> Platform already exists ...");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"--> Could not Add platform to DB: {e.Message}");
+                }
             }
         }
     }
