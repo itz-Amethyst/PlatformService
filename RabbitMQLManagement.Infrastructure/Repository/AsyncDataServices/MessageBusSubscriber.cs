@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using RabbitMQLManagement.Infrastructure.Services.Repository.AsyncDataServices.Common;
 
 namespace RabbitMQLManagement.Infrastructure.Services.Repository.AsyncDataServices
 {
@@ -14,14 +13,12 @@ namespace RabbitMQLManagement.Infrastructure.Services.Repository.AsyncDataServic
         private readonly IEventProcessor _eventProcessor;
         private IConnection _connection;
         private IModel _channel;
-        private readonly IMessageBus _messageBus;
         private string _queueName;
 
-        public MessageBusSubscriber(IConfiguration configuration, IEventProcessor eventProcessor, IMessageBus messageBus)
+        public MessageBusSubscriber(IConfiguration configuration, IEventProcessor eventProcessor)
         {
             _configuration = configuration;
             _eventProcessor = eventProcessor;
-            _messageBus = messageBus;
             InitializeRabbitMq();
         }
 
@@ -44,7 +41,7 @@ namespace RabbitMQLManagement.Infrastructure.Services.Repository.AsyncDataServic
 
             Console.WriteLine("--> Listening on the messageBus ... ");
 
-            _connection.ConnectionShutdown += _messageBus.RabbitMQ_ConnectionShutDown;
+            _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
@@ -67,6 +64,23 @@ namespace RabbitMQLManagement.Infrastructure.Services.Repository.AsyncDataServic
            _channel.BasicConsume(queue: _queueName, autoAck: true, consumer: consumer);
 
            return Task.CompletedTask;
+        }
+
+        public void Dispose()
+        {
+            Console.WriteLine($"--> Message Bus Disposed");
+
+            if (_channel.IsOpen)
+            {
+                _channel.Close();
+                _connection.Close();
+            }
+
+        }
+
+        private void RabbitMQ_ConnectionShutdown(object sender, ShutdownEventArgs e)
+        {
+            Console.WriteLine($"--> RabbitMQ Connection Shutdown");
         }
     }
 }
