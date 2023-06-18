@@ -1,9 +1,11 @@
 ﻿using System.Text.Json;
+using _0_Framework.Application.EventProcessing;
 using AutoMapper;
+using CommandManagement.Domain.Commands;
 using Microsoft.Extensions.DependencyInjection;
 using RabbitMQLManagement.Application.Contracts;
 
-namespace _0_Framework.Application.EventProcessing
+namespace CommandManagement.Infrastructure.EventProcessing.EventProcessing
 {
     public class EventProcessor : IEventProcessor
     {
@@ -18,7 +20,17 @@ namespace _0_Framework.Application.EventProcessing
 
         public void ProcessEvent(string message)
         {
-            throw new NotImplementedException();
+            var eventType = DetermineEvent(message);
+
+            switch (eventType)
+            {
+                case EventType.PlatformPublished:
+                    //ToDo
+                    break;
+                default:
+                    Console.WriteLine();
+                    break;
+            }
         }
 
         private EventType DetermineEvent(string notificationMessage)
@@ -33,8 +45,16 @@ namespace _0_Framework.Application.EventProcessing
                     Console.WriteLine("--> Platform Published Event Detected");
                     return EventType.PlatformPublished;
                 default:
-                    Console.WriteLine("--> Could not determine the event type");\
+                    Console.WriteLine("--> Could not determine the event type");
                     return EventType.Undetermined;
+            }
+        }
+
+        private void AddPlatform(string platformPublishedMessage)
+        {
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var repo = scope.ServiceProvider.GetRequiredService<ICommandRepository>();
             }
         }
     }
