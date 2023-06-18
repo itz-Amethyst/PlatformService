@@ -3,6 +3,7 @@ using CommandManagement.Application.Contracts.Command;
 using CommandManagement.Application.Contracts.Platform;
 using CommandManagement.Domain.Commands;
 using CommandManagement.Domain.Platforms;
+using RabbitMQLManagement.Application.Contracts;
 
 namespace CommandsService.AutoMapper
 {
@@ -17,6 +18,9 @@ namespace CommandsService.AutoMapper
             CreateMap<CreateCommand, Command>();
 
             CreateMap<Command, CommandViewModel>();
+
+            CreateMap<PlatformPublishedViewModel, Platform>()
+                .ForMember(x => x.ExternalId, z => z.MapFrom(src => src.Id));
 
         }
     }
