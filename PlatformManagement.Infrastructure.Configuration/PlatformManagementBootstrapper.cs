@@ -4,6 +4,8 @@ using Microsoft.Extensions.Hosting;
 using PlatformManagement.Domain;
 using PlatformManagement.Infrastructure.EFCore.Context;
 using PlatformManagement.Infrastructure.EFCore.Repositories;
+using RabbitMQLManagement.Domain;
+using RabbitMQLManagement.Infrastructure.Services.Repository.AsyncDataServices;
 
 namespace PlatformManagement.Infrastructure.Configuration
 {
@@ -19,7 +21,13 @@ namespace PlatformManagement.Infrastructure.Configuration
 
             #endregion
 
-            
+            #region MyRegion
+
+            services.AddSingleton<IMessageBusClient, MessageBusClient>();
+
+            #endregion
+
+
             if (environment.IsProduction())
             {
                 Console.WriteLine("--> Using SqlServer Db <--");
