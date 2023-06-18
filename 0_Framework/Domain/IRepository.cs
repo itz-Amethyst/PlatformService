@@ -16,6 +16,8 @@ namespace _0_Framework.Domain
 
         void BulkSaveChanges();
 
+        // For Command ExternalId do the same
+
         bool Exists(Expression<Func<T, bool>> expression);
     }
 }

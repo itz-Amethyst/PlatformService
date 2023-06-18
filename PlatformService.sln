@@ -45,17 +45,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMQL", "RabbitMQL", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RBM.Application", "RBM.Application", "{6B680343-CB08-46E7-A104-1CE6852650E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQLManagement.Application.Contracts", "RabbitMQLManagement.Application.Contracts\RabbitMQLManagement.Application.Contracts.csproj", "{54DA1EED-3CE0-41BB-BF9C-038FFA0DAFC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQLManagement.Application.Contracts", "RabbitMQLManagement.Application.Contracts\RabbitMQLManagement.Application.Contracts.csproj", "{54DA1EED-3CE0-41BB-BF9C-038FFA0DAFC6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RBM.Infrastructure", "RBM.Infrastructure", "{370D47A4-7F18-477F-ADBB-4ADB01A97AED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RBM.Domain", "RBM.Domain", "{D271B567-CEBB-4342-9DBD-A53BA8E77016}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQLManagement.Infrastructure.Services", "RabbitMQLManagement.Infrastructure\RabbitMQLManagement.Infrastructure.Services.csproj", "{20E7B5CF-9D7F-44B1-B514-624A8EB2710E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQLManagement.Infrastructure.Services", "RabbitMQLManagement.Infrastructure\RabbitMQLManagement.Infrastructure.Services.csproj", "{20E7B5CF-9D7F-44B1-B514-624A8EB2710E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQLManagement.Domain", "RabbitMQLManagement.Domain\RabbitMQLManagement.Domain.csproj", "{4BC1A5AA-24EA-48B7-A0DD-EBE13900BE33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQLManagement.Domain", "RabbitMQLManagement.Domain\RabbitMQLManagement.Domain.csproj", "{4BC1A5AA-24EA-48B7-A0DD-EBE13900BE33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQLManagement.Infrastructure.Configuration", "RabbitMQLManagement.Infrastructure.Configuration\RabbitMQLManagement.Infrastructure.Configuration.csproj", "{FAC14168-0ECF-4C19-816A-A79762CFA61E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQLManagement.Infrastructure.Configuration", "RabbitMQLManagement.Infrastructure.Configuration\RabbitMQLManagement.Infrastructure.Configuration.csproj", "{FAC14168-0ECF-4C19-816A-A79762CFA61E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
