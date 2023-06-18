@@ -26,7 +26,7 @@ namespace CommandManagement.Infrastructure.EventProcessing.EventProcessing
             switch (eventType)
             {
                 case EventType.PlatformPublished:
-                    //ToDo
+                   AddPlatform(message);
                     break;
                 default:
                     Console.WriteLine();
@@ -68,6 +68,7 @@ namespace CommandManagement.Infrastructure.EventProcessing.EventProcessing
                     if (!repo.Exists(x => x.ExternalId == plat.ExternalId))
                     {
                         repo.Create(plat);
+                        Console.WriteLine("--> Platform Added!");
                     }
 
                     else
