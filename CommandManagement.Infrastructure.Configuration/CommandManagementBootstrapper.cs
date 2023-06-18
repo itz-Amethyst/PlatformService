@@ -1,6 +1,8 @@
-﻿using CommandManagement.Domain.Commands;
+﻿using _0_Framework.Application.EventProcessing;
+using CommandManagement.Domain.Commands;
 using CommandManagement.Infrastructure.EFCore.Context;
 using CommandManagement.Infrastructure.EFCore.Repository;
+using CommandManagement.Infrastructure.EventProcessing.EventProcessing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,6 +16,12 @@ namespace CommandManagement.Infrastructure.Configuration
             #region Repository
 
             services.AddTransient<ICommandRepository , CommandRepository>();
+
+            #endregion
+
+            #region EventProcessor
+
+            services.AddSingleton<IEventProcessor, EventProcessor>();
 
             #endregion
 
