@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CommandManagement.Infrastructure.Configuration\CommandManagement.Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\RabbitMQLManagement.Application.Contracts\RabbitMQLManagement.Application.Contracts.csproj" />
+    <ProjectReference Include="..\RabbitMQLManagement.Infrastructure.Configuration\RabbitMQLManagement.Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\RabbitMQLManagement.Infrastructure\RabbitMQLManagement.Infrastructure.Services.csproj" />
   </ItemGroup>
 

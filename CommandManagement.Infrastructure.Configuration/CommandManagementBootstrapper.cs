@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Application.EventProcessing;
 using CommandManagement.Domain.Commands;
+using CommandManagement.Domain.Platforms;
 using CommandManagement.Infrastructure.EFCore.Context;
 using CommandManagement.Infrastructure.EFCore.Repository;
 using CommandManagement.Infrastructure.EventProcessing.EventProcessing;
@@ -16,6 +17,7 @@ namespace CommandManagement.Infrastructure.Configuration
             #region Repository
 
             services.AddTransient<ICommandRepository , CommandRepository>();
+            services.AddTransient<IPlatformRepository, PlatformRepository>();
 
             #endregion
 

@@ -9,6 +9,7 @@ builder.Services.AddControllers();
 //? IDK it should implement in here
 builder.Services.AddHostedService<MessageBusSubscriber>();
 CommandManagementBootstrapper.Configure(builder.Services);
+//RabbitMQlBootstrapper.Configure(builder.Services);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
