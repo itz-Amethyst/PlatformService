@@ -19,11 +19,11 @@ namespace CommandManagement.Domain.Platforms
 
         public ICollection<Command> Commands { get; private set; } = new List<Command>();
 
-        public Platform(int id, int externalId, string name)
-        {
-            Id = id;
-            ExternalId = externalId;
-            Name = name;
-        }
+        //public Platform(int id, int externalId, string name)
+        //{
+        //    Id = id;
+        //    ExternalId = externalId;
+        //    Name = name;
+        //}
     }
 }
