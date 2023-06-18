@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using PlatformManagement.Application.Contracts.Platform;
 using PlatformManagement.Domain;
 using PlatformService.SyncDataServices.http;
+using RabbitMQLManagement.Application.Contracts;
+using RabbitMQLManagement.Domain;
 
 namespace PlatformService.Controllers
 {
@@ -14,12 +16,14 @@ namespace PlatformService.Controllers
         private readonly IPlatformRepository _platformRepository;
         private readonly IMapper _mapper;
         private readonly ICommandDataClient _commandDataClient;
+        private readonly IMessageBusClient _messageBusClient;
 
-        public PlatformsController(IPlatformRepository platformRepository, IMapper mapper, ICommandDataClient commandDataClient)
+        public PlatformsController(IPlatformRepository platformRepository, IMapper mapper, ICommandDataClient commandDataClient, IMessageBusClient messageBusClient)
         {
             _platformRepository = platformRepository;
             _mapper = mapper;
             _commandDataClient = commandDataClient;
+            _messageBusClient = messageBusClient;
         }
 
 
@@ -57,6 +61,8 @@ namespace PlatformService.Controllers
 
             var platformViewModel = _mapper.Map<PlatformViewModel>(platformData);
 
+            // Send Sync message
+
             try
             {
                await _commandDataClient.SendPlatformToCommand(platformViewModel);
@@ -64,6 +70,19 @@ namespace PlatformService.Controllers
             catch (Exception e)
             {
                 Console.WriteLine($"--> Could not send synchronously {e.Message}");
+            }
+
+            // Send Async message
+
+            try
+            {
+                var platformPublishedDto = _mapper.Map<PlatformPublishedViewModel>(platformViewModel);
+                platformPublishedDto.Event = "Platform_Published";
+                _messageBusClient.PublishNewPlatform(platformPublishedDto);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"--> Could not send Asynchronously {e.Message}");
             }
 
             return CreatedAtRoute(nameof(GetPlatformById), new { Id = platformData.Id }, platformData);
