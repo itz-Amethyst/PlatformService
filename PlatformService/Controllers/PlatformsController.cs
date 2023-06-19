@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PlatformManagement.Application.Contracts.Platform;
 using PlatformManagement.Domain;
-using PlatformService.SyncDataServices.http;
+using PlatformManagement.Infrastructure.Services.SyncDataServices.http;
 using RabbitMQLManagement.Application.Contracts;
 using RabbitMQLManagement.Domain;
 

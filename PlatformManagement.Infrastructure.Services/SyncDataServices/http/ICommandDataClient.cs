@@ -1,6 +1,6 @@
 ﻿using PlatformManagement.Application.Contracts.Platform;
 
-namespace PlatformService.SyncDataServices.http
+namespace PlatformManagement.Infrastructure.Services.SyncDataServices.http
 {
     public interface ICommandDataClient
     {

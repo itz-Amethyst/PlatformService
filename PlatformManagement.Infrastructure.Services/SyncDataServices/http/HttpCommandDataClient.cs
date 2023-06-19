@@ -1,8 +1,10 @@
 ﻿using System.Text;
 using System.Text.Json;
+using Microsoft.Extensions.Configuration;
 using PlatformManagement.Application.Contracts.Platform;
+using PlatformService.SyncDataServices.http;
 
-namespace PlatformService.SyncDataServices.http
+namespace PlatformManagement.Infrastructure.Services.SyncDataServices.http
 {
     public class HttpCommandDataClient : ICommandDataClient
     {
