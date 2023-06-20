@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using CommandManagement.Domain.Platforms;
+using Grpc.Net.Client;
 using Microsoft.Extensions.Configuration;
+using PlatformService;
 
 namespace CommandManagement.Infrastructure.Services.SyncDataService.Grpc
 {
@@ -18,7 +20,24 @@ namespace CommandManagement.Infrastructure.Services.SyncDataService.Grpc
 
         public IEnumerable<Platform> ReturnAllPlatforms()
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"--> Calling GRPC Service {_configuration.GetSection("GrpcPlatform").Value}");
+
+            var channel = GrpcChannel.ForAddress(_configuration.GetSection("GrpcPlatform").Value);
+
+            var client = new GrpcPlatform.GrpcPlatformClient(channel);
+
+            var request = new GetAllRequest();
+
+            try
+            {
+                var reply = client.GetAllPlatforms(request);
+                return _mapper.Map<IEnumerable<Platform>>(reply.Platform);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"--> Couldnot call GRPC Server {e.Message}");
+
+            }
         }
     }
 }
