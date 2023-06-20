@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Hosting.Internal;
 using PlatformManagement.Infrastructure.Configuration;
 using PlatformManagement.Infrastructure.EFCore.Context;
+using PlatformManagement.Infrastructure.Services.SyncDataServices.Grpc;
 using PlatformManagement.Infrastructure.Services.SyncDataServices.http;
 using RabbitMQLManagement.Infrastructure.Configuration;
 
@@ -16,6 +17,8 @@ var connectionString = builder.Configuration.GetConnectionString("PlatformsConn"
 PlatformManagementBootstrapper.Configure(builder.Services, env , connectionString);
 RabbitMQlBootstrapper.Configure(builder.Services);
 builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
+//? Grpc Config
+builder.Services.AddGrpc();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -45,6 +48,15 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//? Grpc Config
+app.MapGrpcService<GrpcPlatformService>();
+
+app.MapGet("../PlatformManagement.Infrastructure.Services/Protos/Platforms.proto", async context =>
+{
+    await context.Response.WriteAsync(
+        File.ReadAllText("../PlatformManagement.Infrastructure.Services/Protos/Platforms.proto"));
+});
 
 app.Run();
 
