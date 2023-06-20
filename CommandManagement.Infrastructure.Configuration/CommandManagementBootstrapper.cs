@@ -4,6 +4,7 @@ using CommandManagement.Domain.Platforms;
 using CommandManagement.Infrastructure.EFCore.Context;
 using CommandManagement.Infrastructure.EFCore.Repository;
 using CommandManagement.Infrastructure.EventProcessing.EventProcessing;
+using CommandManagement.Infrastructure.Services.SyncDataService.Grpc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,6 +25,12 @@ namespace CommandManagement.Infrastructure.Configuration
             #region EventProcessor
 
             services.AddSingleton<IEventProcessor, EventProcessor>();
+
+            #endregion
+
+            #region Grpc
+
+            services.AddScoped<IPlatformDataClient, PlatformDataClient>();
 
             #endregion
 
