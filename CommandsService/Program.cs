@@ -1,4 +1,5 @@
 using CommandManagement.Infrastructure.Configuration;
+using CommandManagement.Infrastructure.EFCore.Context;
 using RabbitMQLManagement.Infrastructure.Services.Repository.AsyncDataServices;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
+
+PrepDB.PrepPopulation(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
