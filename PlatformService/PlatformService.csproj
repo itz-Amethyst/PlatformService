@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -25,5 +25,9 @@
     <ProjectReference Include="..\RabbitMQLManagement.Application.Contracts\RabbitMQLManagement.Application.Contracts.csproj" />
     <ProjectReference Include="..\RabbitMQLManagement.Infrastructure.Configuration\RabbitMQLManagement.Infrastructure.Configuration.csproj" />
   </ItemGroup>
+
+	<ItemGroup>
+        <Protobuf Include ="..\PlatformManagement.Infrastructure.Services\SyncDataServices\Protos\Platforms.proto" GrpcServices ="Server"/>
+	</ItemGroup>
 
 </Project>

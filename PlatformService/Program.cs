@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Hosting.Internal;
 using PlatformManagement.Infrastructure.Configuration;
 using PlatformManagement.Infrastructure.EFCore.Context;
-using PlatformService.SyncDataServices.http;
+using PlatformManagement.Infrastructure.Services.SyncDataServices.http;
 using RabbitMQLManagement.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
