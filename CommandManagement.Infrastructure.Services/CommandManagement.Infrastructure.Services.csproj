@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="Protos\Platforms.proto">
+      <GrpcServices>Server</GrpcServices>
+    </None>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+	  <PackageReference Include="Grpc.AspNetCore" Version="2.54.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CommandManagement.Domain\CommandManagement.Domain.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="Protos/Platforms.proto" GrpcServices="Server" />
+	</ItemGroup>
+
+</Project>
