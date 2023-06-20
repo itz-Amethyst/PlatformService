@@ -17,6 +17,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.5" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.54.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
@@ -26,6 +27,10 @@
     <ProjectReference Include="..\RabbitMQLManagement.Application.Contracts\RabbitMQLManagement.Application.Contracts.csproj" />
     <ProjectReference Include="..\RabbitMQLManagement.Infrastructure.Configuration\RabbitMQLManagement.Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\RabbitMQLManagement.Infrastructure\RabbitMQLManagement.Infrastructure.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\Platforms.proto" GrpcServices="Server" />
   </ItemGroup>
 
 </Project>
